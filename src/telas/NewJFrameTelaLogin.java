@@ -29,6 +29,7 @@ public class NewJFrameTelaLogin extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
+        label1 = new java.awt.Label();
         lblUsuario = new javax.swing.JLabel();
         lblSenha = new javax.swing.JLabel();
         txtUsuario = new javax.swing.JTextField();
@@ -43,23 +44,47 @@ public class NewJFrameTelaLogin extends javax.swing.JFrame {
         jMenu2.setText("Edit");
         jMenuBar1.add(jMenu2);
 
+        label1.setText("label1");
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Acesso ao Sistema");
         getContentPane().setLayout(null);
 
+        lblUsuario.setFont(new java.awt.Font("Aharoni", 0, 14)); // NOI18N
+        lblUsuario.setForeground(new java.awt.Color(120, 166, 233));
         lblUsuario.setText("Usuário");
         getContentPane().add(lblUsuario);
-        lblUsuario.setBounds(30, 30, 50, 30);
+        lblUsuario.setBounds(40, 30, 70, 30);
 
+        lblSenha.setFont(new java.awt.Font("Aharoni", 0, 14)); // NOI18N
+        lblSenha.setForeground(new java.awt.Color(120, 166, 233));
         lblSenha.setText("Senha");
         getContentPane().add(lblSenha);
-        lblSenha.setBounds(30, 80, 50, 30);
+        lblSenha.setBounds(40, 70, 70, 30);
+
+        txtUsuario.setBackground(new java.awt.Color(252, 232, 222));
+        txtUsuario.setForeground(new java.awt.Color(255, 255, 255));
+        txtUsuario.setCaretColor(new java.awt.Color(255, 255, 255));
+        txtUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtUsuarioActionPerformed(evt);
+            }
+        });
         getContentPane().add(txtUsuario);
-        txtUsuario.setBounds(80, 30, 270, 30);
+        txtUsuario.setBounds(120, 30, 260, 30);
+
+        txtSenha.setBackground(new java.awt.Color(252, 232, 222));
+        txtSenha.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        txtSenha.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtSenhaActionPerformed(evt);
+            }
+        });
         getContentPane().add(txtSenha);
-        txtSenha.setBounds(80, 80, 270, 30);
+        txtSenha.setBounds(120, 70, 260, 30);
 
         btnCadastrar.setBackground(java.awt.Color.white);
+        btnCadastrar.setFont(new java.awt.Font("Aharoni", 0, 14)); // NOI18N
         btnCadastrar.setForeground(new java.awt.Color(80, 122, 244));
         btnCadastrar.setText("Cadastrar-se");
         btnCadastrar.setBorderPainted(false);
@@ -71,15 +96,22 @@ public class NewJFrameTelaLogin extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnCadastrar);
-        btnCadastrar.setBounds(220, 280, 120, 30);
+        btnCadastrar.setBounds(210, 280, 130, 30);
 
         btnEntrar.setText("Entrar");
+        btnEntrar.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        btnEntrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEntrarActionPerformed(evt);
+            }
+        });
         getContentPane().add(btnEntrar);
         btnEntrar.setBounds(150, 160, 120, 30);
 
+        lblMensagem.setFont(new java.awt.Font("Aharoni", 0, 14)); // NOI18N
         lblMensagem.setText("Não está cadastrado ?");
         getContentPane().add(lblMensagem);
-        lblMensagem.setBounds(110, 286, 140, 20);
+        lblMensagem.setBounds(70, 280, 170, 30);
 
         setSize(new java.awt.Dimension(424, 357));
         setLocationRelativeTo(null);
@@ -92,6 +124,18 @@ public class NewJFrameTelaLogin extends javax.swing.JFrame {
         telaCadastro.setVisible(true);
         
     }//GEN-LAST:event_btnCadastrarActionPerformed
+
+    private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnEntrarActionPerformed
+
+    private void txtUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUsuarioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtUsuarioActionPerformed
+
+    private void txtSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSenhaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtSenhaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -134,6 +178,7 @@ public class NewJFrameTelaLogin extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
+    private java.awt.Label label1;
     private javax.swing.JLabel lblMensagem;
     private javax.swing.JLabel lblSenha;
     private javax.swing.JLabel lblUsuario;

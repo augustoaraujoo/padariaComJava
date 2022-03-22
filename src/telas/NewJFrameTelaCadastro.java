@@ -4,6 +4,15 @@
  */
 package telas;
 
+//import com.sun.jdi.connect.spi.Connection;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Residencia
@@ -26,57 +35,140 @@ public class NewJFrameTelaCadastro extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        lblNome = new javax.swing.JLabel();
+        txtName = new javax.swing.JTextField();
+        lblSenha = new javax.swing.JLabel();
+        btnVoltar = new javax.swing.JButton();
+        btnCadastrar = new javax.swing.JButton();
         txtSenhaCadastro = new javax.swing.JPasswordField();
-        txtSenhaCadastro2 = new javax.swing.JPasswordField();
+        txtRepitaSenha = new javax.swing.JPasswordField();
+        lblSenha3 = new javax.swing.JLabel();
+        lblSenha1 = new javax.swing.JLabel();
+        cmbComboBoxCargos = new javax.swing.JComboBox<>();
 
-        setTitle("Cadastro");
+        setTitle("Cadastro de Usuário");
+        setBackground(new java.awt.Color(255, 255, 255));
         getContentPane().setLayout(null);
 
-        jLabel1.setText("Nome");
-        getContentPane().add(jLabel1);
-        jLabel1.setBounds(10, 30, 120, 30);
-        getContentPane().add(jTextField1);
-        jTextField1.setBounds(130, 30, 240, 30);
+        lblNome.setFont(new java.awt.Font("Aharoni", 1, 14)); // NOI18N
+        lblNome.setForeground(new java.awt.Color(120, 166, 233));
+        lblNome.setText("Nome");
+        getContentPane().add(lblNome);
+        lblNome.setBounds(20, 30, 120, 30);
 
-        jLabel2.setText("Confirme a senha");
-        getContentPane().add(jLabel2);
-        jLabel2.setBounds(10, 120, 120, 30);
-
-        jLabel3.setText("Crie uma nova senha");
-        getContentPane().add(jLabel3);
-        jLabel3.setBounds(10, 70, 120, 30);
-
-        jButton1.setText("Voltar");
-        getContentPane().add(jButton1);
-        jButton1.setBounds(10, 260, 100, 25);
-
-        jButton2.setText("Cadastrar");
-        getContentPane().add(jButton2);
-        jButton2.setBounds(180, 180, 100, 25);
-        getContentPane().add(txtSenhaCadastro);
-        txtSenhaCadastro.setBounds(130, 70, 240, 30);
-
-        txtSenhaCadastro2.addActionListener(new java.awt.event.ActionListener() {
+        txtName.setBackground(new java.awt.Color(252, 232, 222));
+        txtName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtSenhaCadastro2ActionPerformed(evt);
+                txtNameActionPerformed(evt);
             }
         });
-        getContentPane().add(txtSenhaCadastro2);
-        txtSenhaCadastro2.setBounds(130, 120, 240, 30);
+        getContentPane().add(txtName);
+        txtName.setBounds(150, 30, 240, 30);
+
+        lblSenha.setFont(new java.awt.Font("Aharoni", 0, 14)); // NOI18N
+        lblSenha.setForeground(new java.awt.Color(120, 166, 233));
+        lblSenha.setText("Cargo");
+        getContentPane().add(lblSenha);
+        lblSenha.setBounds(20, 180, 120, 30);
+
+        btnVoltar.setText("Voltar");
+        btnVoltar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVoltarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnVoltar);
+        btnVoltar.setBounds(20, 260, 100, 30);
+
+        btnCadastrar.setText("Cadastrar");
+        btnCadastrar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnCadastrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCadastrarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnCadastrar);
+        btnCadastrar.setBounds(290, 260, 100, 30);
+
+        txtSenhaCadastro.setBackground(new java.awt.Color(252, 232, 222));
+        getContentPane().add(txtSenhaCadastro);
+        txtSenhaCadastro.setBounds(150, 80, 240, 30);
+
+        txtRepitaSenha.setBackground(new java.awt.Color(252, 232, 222));
+        txtRepitaSenha.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtRepitaSenhaActionPerformed(evt);
+            }
+        });
+        getContentPane().add(txtRepitaSenha);
+        txtRepitaSenha.setBounds(150, 130, 240, 30);
+
+        lblSenha3.setFont(new java.awt.Font("Aharoni", 0, 14)); // NOI18N
+        lblSenha3.setForeground(new java.awt.Color(120, 166, 233));
+        lblSenha3.setText("Confirme a senha");
+        getContentPane().add(lblSenha3);
+        lblSenha3.setBounds(20, 130, 120, 30);
+
+        lblSenha1.setFont(new java.awt.Font("Aharoni", 0, 14)); // NOI18N
+        lblSenha1.setForeground(new java.awt.Color(120, 166, 233));
+        lblSenha1.setText("Senha");
+        getContentPane().add(lblSenha1);
+        lblSenha1.setBounds(20, 80, 120, 30);
+
+        cmbComboBoxCargos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Gerente", "Balconista", "Caixa" }));
+        getContentPane().add(cmbComboBoxCargos);
+        cmbComboBoxCargos.setBounds(150, 180, 100, 22);
 
         setSize(new java.awt.Dimension(424, 357));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtSenhaCadastro2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSenhaCadastro2ActionPerformed
+    private void txtRepitaSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRepitaSenhaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtSenhaCadastro2ActionPerformed
+    }//GEN-LAST:event_txtRepitaSenhaActionPerformed
+
+    private void btnVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVoltarActionPerformed
+        // TODO add your handling code here:
+        NewJFrameTelaLogin telaLogin;
+
+        telaLogin = new NewJFrameTelaLogin();
+        telaLogin.setVisible(true);
+
+    }//GEN-LAST:event_btnVoltarActionPerformed
+
+    private void txtNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNameActionPerformed
+
+    }//GEN-LAST:event_txtNameActionPerformed
+
+    private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
+
+        try {
+            Connection connection;
+            PreparedStatement st;
+
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            //conexão com DB.SQL
+            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/padaria", "root", "root");
+            st = connection.prepareStatement("INSERT INTO usuario VALUES(?, ?, ?)");
+            
+            st.setString(1, txtName.getText());
+            st.setString(2, txtSenhaCadastro.getText());
+            st.setString(3, cmbComboBoxCargos.getSelectedItem().toString());
+            st.executeUpdate();
+            
+            txtName.setText("");
+            txtSenhaCadastro.setText("");
+            cmbComboBoxCargos.requestFocus();
+            
+            JOptionPane.showMessageDialog(btnCadastrar, " user created ");
+
+        } catch (ClassNotFoundException ex) {
+            JOptionPane.showMessageDialog(btnCadastrar, "driver not found !");
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(btnCadastrar, "error SQLException, params NOT FOUND !");
+        }
+
+    }//GEN-LAST:event_btnCadastrarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -114,13 +206,15 @@ public class NewJFrameTelaCadastro extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JButton btnCadastrar;
+    private javax.swing.JButton btnVoltar;
+    private javax.swing.JComboBox<String> cmbComboBoxCargos;
+    private javax.swing.JLabel lblNome;
+    private javax.swing.JLabel lblSenha;
+    private javax.swing.JLabel lblSenha1;
+    private javax.swing.JLabel lblSenha3;
+    private javax.swing.JTextField txtName;
+    private javax.swing.JPasswordField txtRepitaSenha;
     private javax.swing.JPasswordField txtSenhaCadastro;
-    private javax.swing.JPasswordField txtSenhaCadastro2;
     // End of variables declaration//GEN-END:variables
 }
