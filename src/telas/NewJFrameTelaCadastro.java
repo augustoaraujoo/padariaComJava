@@ -141,31 +141,62 @@ public class NewJFrameTelaCadastro extends javax.swing.JFrame {
     }//GEN-LAST:event_txtNameActionPerformed
 
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
+        String regExp = "^[A-Z-a-z]{5,}";// A-z necessário 4 digítos 
+        String regexExpPasswordValidation = "(?=.*\\d)";// deve conter ao menos um dígito
+
+        if (txtName.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Preencha o nome do usuário");
+            txtName.requestFocus();
+            return;
+        }
+        if (txtName.getText().length() > 10) {
+            JOptionPane.showMessageDialog(null, "Erro o nome do usuário precisa ter até 10 caracteres");
+            return;
+        }
+        if (!txtName.getText().toString().matches(regExp)) {
+            JOptionPane.showMessageDialog(null, "Erro o nome do usuário está inválido");
+            return;
+        }
+        if (txtSenhaCadastro.getPassword().toString().equals("")) {
+            JOptionPane.showMessageDialog(null, "Preencha a senha ");
+            txtSenhaCadastro.requestFocus();
+            return;
+        }
+
+        if (txtSenhaCadastro.getPassword().toString().matches(regexExpPasswordValidation)) {
+            JOptionPane.showMessageDialog(null, "Senha inválida deve conter ao menos um dígito ");
+            return;
+        }
 
         try {
-            Connection connection;
-            PreparedStatement st;
 
+            Connection conexao;
+            PreparedStatement st;
             Class.forName("com.mysql.cj.jdbc.Driver");
-            //conexão com DB.SQL
-            connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/padaria", "root", "root");
-            st = connection.prepareStatement("INSERT INTO usuario VALUES(?, ?, ?)");
-            
-            st.setString(1, txtName.getText());
-            st.setString(2, txtSenhaCadastro.getText());
-            st.setString(3, cmbComboBoxCargos.getSelectedItem().toString());
-            st.executeUpdate();
-            
-            txtName.setText("");
-            txtSenhaCadastro.setText("");
-            cmbComboBoxCargos.requestFocus();
-            
-            JOptionPane.showMessageDialog(btnCadastrar, " user created ");
+            conexao = DriverManager.getConnection("jdbc:mysql://localhost:3306/padaria", " ", "root");
+
+            if (txtRepitaSenha.getPassword().toString().equals(txtSenhaCadastro.getPassword().toString())) {
+                st = conexao.prepareStatement("INSERT INTO usuario VALUES (?, ?, ?)");
+
+                st.setString(1, txtName.getText());
+                st.setString(2, txtSenhaCadastro.getPassword().toString());
+                st.setString(3, cmbComboBoxCargos.getSelectedItem().toString());
+                st.executeUpdate();
+
+                txtName.setText("");
+                txtRepitaSenha.setText("");
+                txtSenhaCadastro.setText("");
+                cmbComboBoxCargos.requestFocus();
+
+                JOptionPane.showMessageDialog(btnCadastrar, " user created ");
+            } else {
+                JOptionPane.showMessageDialog(btnCadastrar, " erro as senhas não são iguais! ");
+            }
 
         } catch (ClassNotFoundException ex) {
             JOptionPane.showMessageDialog(btnCadastrar, "driver not found !");
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(btnCadastrar, "error SQLException, params NOT FOUND !");
+            JOptionPane.showMessageDialog(btnCadastrar, "error SQLException, params NOT FOUND !" + ex.getMessage());
         }
 
     }//GEN-LAST:event_btnCadastrarActionPerformed
