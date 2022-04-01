@@ -61,6 +61,11 @@ public class NewJFrameTelaLogin extends javax.swing.JFrame {
                 txtUsuarioActionPerformed(evt);
             }
         });
+        txtUsuario.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtUsuarioKeyPressed(evt);
+            }
+        });
         getContentPane().add(txtUsuario);
         txtUsuario.setBounds(120, 30, 260, 30);
 
@@ -69,6 +74,11 @@ public class NewJFrameTelaLogin extends javax.swing.JFrame {
         txtSenha.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtSenhaActionPerformed(evt);
+            }
+        });
+        txtSenha.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtSenhaKeyPressed(evt);
             }
         });
         getContentPane().add(txtSenha);
@@ -118,6 +128,7 @@ public class NewJFrameTelaLogin extends javax.swing.JFrame {
 
     private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarActionPerformed
         try {
+
             Connection conexao;
             PreparedStatement st;
             ResultSet rs;
@@ -138,7 +149,10 @@ public class NewJFrameTelaLogin extends javax.swing.JFrame {
 
                 telaMenu = new NewJFrameTelaMenu();
                 telaMenu.setVisible(true);
-                
+
+                txtSenha.setText("");
+                txtUsuario.setText("");
+                /* OPCIONAL */
                 telaLogin = new NewJFrameTelaLogin();
                 telaLogin.dispose();
 
@@ -159,8 +173,22 @@ public class NewJFrameTelaLogin extends javax.swing.JFrame {
     }//GEN-LAST:event_txtUsuarioActionPerformed
 
     private void txtSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSenhaActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_txtSenhaActionPerformed
+
+    private void txtUsuarioKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUsuarioKeyPressed
+
+        if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
+            txtSenha.requestFocus();
+        }
+    }//GEN-LAST:event_txtUsuarioKeyPressed
+
+    private void txtSenhaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSenhaKeyPressed
+
+        if (evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER) {
+            btnEntrar.doClick();
+        }
+    }//GEN-LAST:event_txtSenhaKeyPressed
 
     /**
      * @param args the command line arguments
