@@ -133,28 +133,24 @@ public class NewJFrameTelaLogin extends javax.swing.JFrame {
             PreparedStatement st;
             ResultSet rs;
 
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            conexao = DriverManager.getConnection("jdbc:mysql://localhost:3306/padaria", "mysql2", "root");
-            st = conexao.prepareStatement("SELECT * FROM usuario WHERE NOME=? AND SENHA=?");
+            Class.forName("org.postgresql.Driver");
+            conexao = DriverManager.getConnection("jdbc:postgresql://localhost:5433/padaria", "postgres", "root");
+            st = conexao.prepareStatement("SELECT * FROM usuarios where nome=? and senha=?");
 
             st.setString(1, txtUsuario.getText());
-            st.setString(2, txtSenha.getPassword().toString());
-
+            st.setString(2, txtSenha.getText());
             rs = st.executeQuery();
 
             if (rs.next()) {
+
                 NewJFrameTelaLogin telaLogin;
-
                 NewJFrameTelaMenu telaMenu;
-
-                telaMenu = new NewJFrameTelaMenu();
-                telaMenu.setVisible(true);
 
                 txtSenha.setText("");
                 txtUsuario.setText("");
-                /* OPCIONAL */
-                telaLogin = new NewJFrameTelaLogin();
-                telaLogin.dispose();
+
+                telaMenu = new NewJFrameTelaMenu();
+                telaMenu.setVisible(true);
 
             } else {
                 JOptionPane.showMessageDialog(null, "Usuário | Senha : INVÁLIDO");

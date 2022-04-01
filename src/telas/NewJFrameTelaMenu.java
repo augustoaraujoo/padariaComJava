@@ -28,8 +28,6 @@ public class NewJFrameTelaMenu extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Menu");
         getContentPane().setLayout(null);
-
-        lblBackground.setIcon(new javax.swing.ImageIcon("C:\\Users\\Residencia\\Desktop\\jules.jpg")); // NOI18N
         getContentPane().add(lblBackground);
         lblBackground.setBounds(330, 0, 80, 300);
 
@@ -126,7 +124,8 @@ public class NewJFrameTelaMenu extends javax.swing.JFrame {
 
         setJMenuBar(barMenu);
 
-        setBounds(0, 0, 426, 357);
+        setSize(new java.awt.Dimension(426, 357));
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void itmCadastrarProdutosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itmCadastrarProdutosActionPerformed

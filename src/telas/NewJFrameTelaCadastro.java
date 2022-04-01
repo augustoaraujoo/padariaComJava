@@ -18,6 +18,7 @@ import java.util.Locale;
 import javax.swing.JOptionPane;
 
 public class NewJFrameTelaCadastro extends javax.swing.JFrame {
+
     public NewJFrameTelaCadastro() {
         initComponents();
     }
@@ -133,9 +134,8 @@ public class NewJFrameTelaCadastro extends javax.swing.JFrame {
 
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
         String regExp = "^[A-Z-a-z]{5,}";// A-z necessário 4 digítos 
-        String regexExpPasswordValidation = "(?=.*\\d)";// deve conter ao menos um dígito
+
         /* COMEÇO TESTS BIBLIOTECAS      */
-        
         Date date = new Date();
         Locale local = Locale.getDefault();
         Toolkit tk = Toolkit.getDefaultToolkit();
@@ -171,23 +171,19 @@ public class NewJFrameTelaCadastro extends javax.swing.JFrame {
             return;
         }
 
-        if (txtSenhaCadastro.getPassword().toString().matches(regexExpPasswordValidation)) {
-            JOptionPane.showMessageDialog(null, "Senha inválida deve conter ao menos um dígito ");
-            return;
-        }
-
         try {
 
             Connection conexao;
             PreparedStatement st;
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            conexao = DriverManager.getConnection("jdbc:mysql://localhost:3306/padaria", " ", "root");
+            Class.forName("org.postgresql.Driver");
+            conexao = DriverManager.getConnection("jdbc:postgresql://localhost:5433/padaria", "postgres", "root");
 
-            if (txtRepitaSenha.getPassword().toString().equals(txtSenhaCadastro.getPassword().toString())) {
-                st = conexao.prepareStatement("INSERT INTO usuario VALUES (?, ?, ?)");
+            if (txtRepitaSenha.getText().equals(txtSenhaCadastro.getText())) {
+
+                st = conexao.prepareStatement("INSERT INTO usuarios VALUES (?, ?, ?)");
 
                 st.setString(1, txtName.getText());
-                st.setString(2, txtSenhaCadastro.getPassword().toString());
+                st.setString(2, txtSenhaCadastro.getText());
                 st.setString(3, cmbComboBoxCargos.getSelectedItem().toString());
                 st.executeUpdate();
 
