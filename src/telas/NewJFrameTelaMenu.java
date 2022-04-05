@@ -1,15 +1,39 @@
 package telas;
 
+import javax.swing.JOptionPane;
+
 public class NewJFrameTelaMenu extends javax.swing.JFrame {
 
     public NewJFrameTelaMenu() {
         initComponents();
     }
 
+    public NewJFrameTelaMenu(String nome, String cargo) {
+        initComponents();
+        if (cargo.equalsIgnoreCase("Caixa") || cargo.equalsIgnoreCase("Balconista")) {
+            verificaCargoUsuario();
+            lblSaudacao.setText("Welcome ," + nome);
+        } else if (cargo.equalsIgnoreCase("Gerente")) {
+            lblSaudacao.setText("Welcome " + cargo + ":" + nome);
+        }
+    }
+
+    private void verificaCargoUsuario() {
+        itmRelatoriosProdutos.setEnabled(true);
+        itmCadastrarProdutos.setEnabled(false);
+        itmAlterarProdutos.setEnabled(false);
+        itmExcluirProdutos.setEnabled(false);
+        itmCadastrarFuncionario.setEnabled(false);
+        imtAtualizarFuncionario.setEnabled(false);
+        itmExcluirFuncionario.setEnabled(false);
+        itmRelatorioFuncionario.setEnabled(false);
+    }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        lblSaudacao = new javax.swing.JLabel();
         lblBackground = new javax.swing.JLabel();
         barMenu = new javax.swing.JMenuBar();
         mnuProdutos = new javax.swing.JMenu();
@@ -27,14 +51,24 @@ public class NewJFrameTelaMenu extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Menu");
+        setFont(new java.awt.Font("Aharoni", 0, 14)); // NOI18N
         getContentPane().setLayout(null);
+
+        lblSaudacao.setFont(new java.awt.Font("Aharoni", 0, 12)); // NOI18N
+        lblSaudacao.setForeground(new java.awt.Color(255, 255, 255));
+        getContentPane().add(lblSaudacao);
+        lblSaudacao.setBounds(220, 0, 190, 30);
+
+        lblBackground.setIcon(new javax.swing.ImageIcon("C:\\Users\\Residencia\\Desktop\\pane-scaled-1-600x400.jpg")); // NOI18N
         getContentPane().add(lblBackground);
-        lblBackground.setBounds(330, 0, 80, 300);
+        lblBackground.setBounds(0, -20, 410, 320);
 
         mnuProdutos.setMnemonic('P');
         mnuProdutos.setText("Produtos");
+        mnuProdutos.setFont(new java.awt.Font("Aharoni", 0, 12)); // NOI18N
 
         itmCadastrarProdutos.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_DOWN, 0));
+        itmCadastrarProdutos.setFont(new java.awt.Font("Aharoni", 0, 12)); // NOI18N
         itmCadastrarProdutos.setText("Cadastrar");
         itmCadastrarProdutos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -44,6 +78,7 @@ public class NewJFrameTelaMenu extends javax.swing.JFrame {
         mnuProdutos.add(itmCadastrarProdutos);
 
         itmAlterarProdutos.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_UP, 0));
+        itmAlterarProdutos.setFont(new java.awt.Font("Aharoni", 0, 12)); // NOI18N
         itmAlterarProdutos.setText("Alterar");
         itmAlterarProdutos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -53,6 +88,7 @@ public class NewJFrameTelaMenu extends javax.swing.JFrame {
         mnuProdutos.add(itmAlterarProdutos);
 
         itmExcluirProdutos.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_LEFT, 0));
+        itmExcluirProdutos.setFont(new java.awt.Font("Aharoni", 0, 12)); // NOI18N
         itmExcluirProdutos.setText("Excluir");
         itmExcluirProdutos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -62,6 +98,7 @@ public class NewJFrameTelaMenu extends javax.swing.JFrame {
         mnuProdutos.add(itmExcluirProdutos);
 
         itmRelatoriosProdutos.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_RIGHT, 0));
+        itmRelatoriosProdutos.setFont(new java.awt.Font("Aharoni", 0, 12)); // NOI18N
         itmRelatoriosProdutos.setText("Relatórios");
         itmRelatoriosProdutos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -74,9 +111,12 @@ public class NewJFrameTelaMenu extends javax.swing.JFrame {
 
         mnuFuncionarios.setMnemonic('F');
         mnuFuncionarios.setText("Funcionários");
+        mnuFuncionarios.setFont(new java.awt.Font("Aharoni", 0, 12)); // NOI18N
 
         itmCadastrarFuncionario.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_DOWN, 0));
+        itmCadastrarFuncionario.setFont(new java.awt.Font("Aharoni", 0, 12)); // NOI18N
         itmCadastrarFuncionario.setText("Cadastrar ");
+        itmCadastrarFuncionario.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         itmCadastrarFuncionario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 itmCadastrarFuncionarioActionPerformed(evt);
@@ -85,6 +125,7 @@ public class NewJFrameTelaMenu extends javax.swing.JFrame {
         mnuFuncionarios.add(itmCadastrarFuncionario);
 
         itmExcluirFuncionario.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_UP, 0));
+        itmExcluirFuncionario.setFont(new java.awt.Font("Aharoni", 0, 12)); // NOI18N
         itmExcluirFuncionario.setText("Excluir ");
         itmExcluirFuncionario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -94,6 +135,7 @@ public class NewJFrameTelaMenu extends javax.swing.JFrame {
         mnuFuncionarios.add(itmExcluirFuncionario);
 
         imtAtualizarFuncionario.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_LEFT, 0));
+        imtAtualizarFuncionario.setFont(new java.awt.Font("Aharoni", 0, 12)); // NOI18N
         imtAtualizarFuncionario.setText("Atualizar");
         imtAtualizarFuncionario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -103,6 +145,7 @@ public class NewJFrameTelaMenu extends javax.swing.JFrame {
         mnuFuncionarios.add(imtAtualizarFuncionario);
 
         itmRelatorioFuncionario.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_RIGHT, 0));
+        itmRelatorioFuncionario.setFont(new java.awt.Font("Aharoni", 0, 12)); // NOI18N
         itmRelatorioFuncionario.setText("Relatórios");
         itmRelatorioFuncionario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -115,8 +158,10 @@ public class NewJFrameTelaMenu extends javax.swing.JFrame {
 
         mnuAjuda.setMnemonic('A');
         mnuAjuda.setText("Ajuda");
+        mnuAjuda.setFont(new java.awt.Font("Aharoni", 0, 12)); // NOI18N
 
         itmManual.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        itmManual.setFont(new java.awt.Font("Aharoni", 0, 12)); // NOI18N
         itmManual.setText("Manual");
         mnuAjuda.add(itmManual);
 
@@ -161,9 +206,7 @@ public class NewJFrameTelaMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_itmRelatorioFuncionarioActionPerformed
 
     public static void main(String args[]) {
-        
-        
-        
+
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -180,8 +223,7 @@ public class NewJFrameTelaMenu extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(NewJFrameTelaMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        
-        
+
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new NewJFrameTelaMenu().setVisible(true);
@@ -201,6 +243,7 @@ public class NewJFrameTelaMenu extends javax.swing.JFrame {
     private javax.swing.JMenuItem itmRelatorioFuncionario;
     private javax.swing.JMenuItem itmRelatoriosProdutos;
     private javax.swing.JLabel lblBackground;
+    private javax.swing.JLabel lblSaudacao;
     private javax.swing.JMenu mnuAjuda;
     private javax.swing.JMenu mnuFuncionarios;
     private javax.swing.JMenu mnuProdutos;

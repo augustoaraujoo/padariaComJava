@@ -11,6 +11,7 @@ public class NewJFrameTelaLogin extends javax.swing.JFrame {
 
     public NewJFrameTelaLogin() {
         initComponents();
+
     }
 
     @SuppressWarnings("unchecked")
@@ -127,12 +128,21 @@ public class NewJFrameTelaLogin extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCadastrarActionPerformed
 
     private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarActionPerformed
-        try {
+        if (txtUsuario.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "campo vazio");
+            lblUsuario.requestFocus();
+            return;
+        }
+        if (txtSenha.getText().equals("")) {
+            JOptionPane.showConfirmDialog(null, "");
+            lblSenha.requestFocus();
+            return;
+        }
 
+        try {
             Connection conexao;
             PreparedStatement st;
             ResultSet rs;
-
             Class.forName("org.postgresql.Driver");
             conexao = DriverManager.getConnection("jdbc:postgresql://localhost:5433/padaria", "postgres", "root");
             st = conexao.prepareStatement("SELECT * FROM usuarios where nome=? and senha=?");
@@ -148,8 +158,8 @@ public class NewJFrameTelaLogin extends javax.swing.JFrame {
 
                 txtSenha.setText("");
                 txtUsuario.setText("");
-
-                telaMenu = new NewJFrameTelaMenu();
+                // props 
+                telaMenu = new NewJFrameTelaMenu(rs.getString("nome"), rs.getString("cargo"));
                 telaMenu.setVisible(true);
 
             } else {

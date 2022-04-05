@@ -1,10 +1,7 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+
 package telas;
 
-//import com.sun.jdi.connect.spi.Connection;
+
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.sql.Connection;
@@ -108,6 +105,11 @@ public class NewJFrameTelaCadastro extends javax.swing.JFrame {
         lblSenha1.setBounds(20, 80, 120, 30);
 
         cmbComboBoxCargos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Gerente", "Balconista", "Caixa" }));
+        cmbComboBoxCargos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbComboBoxCargosActionPerformed(evt);
+            }
+        });
         getContentPane().add(cmbComboBoxCargos);
         cmbComboBoxCargos.setBounds(150, 180, 100, 22);
 
@@ -134,7 +136,7 @@ public class NewJFrameTelaCadastro extends javax.swing.JFrame {
 
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
         String regExp = "^[A-Z-a-z]{5,}";// A-z necessário 4 digítos 
-
+        
         /* COMEÇO TESTS BIBLIOTECAS      */
         Date date = new Date();
         Locale local = Locale.getDefault();
@@ -191,7 +193,7 @@ public class NewJFrameTelaCadastro extends javax.swing.JFrame {
                 txtRepitaSenha.setText("");
                 txtSenhaCadastro.setText("");
                 cmbComboBoxCargos.requestFocus();
-
+                
                 JOptionPane.showMessageDialog(btnCadastrar, " user created ");
             } else {
                 JOptionPane.showMessageDialog(btnCadastrar, " erro as senhas não são iguais! ");
@@ -205,9 +207,11 @@ public class NewJFrameTelaCadastro extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnCadastrarActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
+    private void cmbComboBoxCargosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbComboBoxCargosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmbComboBoxCargosActionPerformed
+
+    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
