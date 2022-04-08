@@ -60,6 +60,7 @@ public class NewJFrameTelaMenu extends javax.swing.JFrame {
         txtMarcaProduto = new javax.swing.JTextField();
         txtNomeProduto = new javax.swing.JTextField();
         btnCadastrar = new javax.swing.JButton();
+        btnAlterarProduto = new javax.swing.JButton();
         lblBackground = new javax.swing.JLabel();
         barMenu = new javax.swing.JMenuBar();
         mnuProdutos = new javax.swing.JMenu();
@@ -80,6 +81,7 @@ public class NewJFrameTelaMenu extends javax.swing.JFrame {
         setFont(new java.awt.Font("Aharoni", 0, 14)); // NOI18N
         getContentPane().setLayout(null);
 
+        lblSaudacao.setBackground(new java.awt.Color(51, 51, 51));
         lblSaudacao.setFont(new java.awt.Font("Aharoni", 0, 12)); // NOI18N
         lblSaudacao.setForeground(new java.awt.Color(255, 255, 255));
         getContentPane().add(lblSaudacao);
@@ -141,6 +143,15 @@ public class NewJFrameTelaMenu extends javax.swing.JFrame {
         });
         pnlCadastrarProdutos.add(btnCadastrar);
         btnCadastrar.setBounds(300, 140, 100, 30);
+
+        btnAlterarProduto.setText("Alterar");
+        btnAlterarProduto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAlterarProdutoActionPerformed(evt);
+            }
+        });
+        pnlCadastrarProdutos.add(btnAlterarProduto);
+        btnAlterarProduto.setBounds(300, 90, 100, 30);
 
         getContentPane().add(pnlCadastrarProdutos);
         pnlCadastrarProdutos.setBounds(0, 40, 410, 190);
@@ -265,7 +276,7 @@ public class NewJFrameTelaMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_itmCadastrarProdutosActionPerformed
 
     private void itmAlterarProdutosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itmAlterarProdutosActionPerformed
-        // TODO add your handling code here:
+        pnlCadastrarProdutos.setVisible(true);
     }//GEN-LAST:event_itmAlterarProdutosActionPerformed
 
     private void itmExcluirProdutosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itmExcluirProdutosActionPerformed
@@ -290,29 +301,6 @@ public class NewJFrameTelaMenu extends javax.swing.JFrame {
 
     private void itmRelatorioFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itmRelatorioFuncionarioActionPerformed
         //método ... /
-        try {
-            try {
-                Connection conexao;
-                PreparedStatement st;
-                ResultSet rs;
-                Class.forName("org.postgresql.Driver");
-                conexao = DriverManager.getConnection("jdbc:postgresql://localhost:5433/padaria", "postgres", "root");
-                st = conexao.prepareStatement("SELECT * FROM usuarios");
-                rs = st.executeQuery();
-
-                if (rs.next()) {
-                    String nome = rs.getString("nome");
-                    String cargo = rs.getString("cargo");
-                    System.out.println(nome + "," + cargo);
-                }
-
-            } catch (SQLException ex) {
-                Logger.getLogger(NewJFrameTelaMenu.class.getName()).log(Level.SEVERE, null, ex);
-            }
-
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(NewJFrameTelaMenu.class.getName()).log(Level.SEVERE, null, ex);
-        }
 
     }//GEN-LAST:event_itmRelatorioFuncionarioActionPerformed
 
@@ -326,10 +314,6 @@ public class NewJFrameTelaMenu extends javax.swing.JFrame {
         PreparedStatement st;
         ResultSet rs;
 
-        //Pattern pattern = Pattern.compile("0-9", Pattern.CASE_INSENSITIVE);
-        //Matcher matcher = pattern.matcher(txtPrecoProduto.getText().toString());
-        //boolean matchFound = matcher.find();
-        //all campos
         if (txtCodigoProduto.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "ERRO NOME VAZIO | INVÁLIDO ");
             return;
@@ -372,6 +356,52 @@ public class NewJFrameTelaMenu extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtPrecoProdutoActionPerformed
 
+    private void btnAlterarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarProdutoActionPerformed
+        System.out.println("");
+        Connection conexao;
+        PreparedStatement st;
+        ResultSet rs;
+        try {
+            Class.forName("org.postgresql.Driver");
+            try {
+                conexao = DriverManager.getConnection("jdbc:postgresql://localhost:5433/padaria", "postgres", "root");
+                st = conexao.prepareStatement("SELECT * FROM PRODUTOS where código_produto=? ");
+                st.setString(1, txtCodigoProduto.getText());
+                rs = st.executeQuery();
+                
+                st = conexao.prepareStatement("UPDATE PRODUTOS SET marca_produto=?,nome_produto=?,preço_produto=?,código_produto=? WHERE código_produto=?");
+
+                if (rs.next()) {
+
+                    st.setString(1, txtMarcaProduto.getText());
+                    st.setString(2, txtNomeProduto.getText());
+                    st.setString(3, txtPrecoProduto.getText());
+                    st.setString(4, txtCodigoProduto.getText());
+                    st.setString(5, txtCodigoProduto.getText().toString());
+                    st.executeUpdate();
+
+                    txtMarcaProduto.setText("");
+                    txtNomeProduto.setText("");
+                    txtPrecoProduto.setText("");
+                    txtCodigoProduto.setText("");
+                } else {
+                    JOptionPane.showMessageDialog(btnCadastrar, " erro no parâmetro código! ");
+                    return;
+                }
+
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, " erro " + ex.getMessage());
+                return;
+            }
+
+        } catch (ClassNotFoundException ex) {
+            JOptionPane.showMessageDialog(null, " erro " + ex.getMessage());
+            return;
+        }
+
+
+    }//GEN-LAST:event_btnAlterarProdutoActionPerformed
+
     public static void main(String args[]) {
 
         try {
@@ -400,6 +430,7 @@ public class NewJFrameTelaMenu extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuBar barMenu;
+    private javax.swing.JButton btnAlterarProduto;
     private javax.swing.JButton btnCadastrar;
     private javax.swing.JMenuItem imtAtualizarFuncionario;
     private javax.swing.JMenuItem itmAlterarProdutos;

@@ -137,7 +137,7 @@ public class NewJFrameTelaCadastro extends javax.swing.JFrame {
 
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
         String regExp = "^[A-Z-a-z]{5}";
-        String regExpPassword = "[A-Z-a-z]{5}(?=[0-9]{1})";
+        String regExpPassword = "[A-Z-a-z]{5}[0-9]{1}";
 
         /* COMEÇO TESTS BIBLIOTECAS      */
         Date date = new Date();
