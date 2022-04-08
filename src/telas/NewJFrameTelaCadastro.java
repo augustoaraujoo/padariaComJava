@@ -1,6 +1,4 @@
-
 package telas;
-
 
 import java.awt.Dimension;
 import java.awt.Toolkit;
@@ -24,6 +22,7 @@ public class NewJFrameTelaCadastro extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        label1 = new java.awt.Label();
         lblNome = new javax.swing.JLabel();
         txtName = new javax.swing.JTextField();
         lblSenha = new javax.swing.JLabel();
@@ -34,6 +33,8 @@ public class NewJFrameTelaCadastro extends javax.swing.JFrame {
         lblSenha3 = new javax.swing.JLabel();
         lblSenha1 = new javax.swing.JLabel();
         cmbComboBoxCargos = new javax.swing.JComboBox<>();
+
+        label1.setText("label1");
 
         setTitle("Cadastro de Usuário");
         setBackground(new java.awt.Color(255, 255, 255));
@@ -135,8 +136,9 @@ public class NewJFrameTelaCadastro extends javax.swing.JFrame {
     }//GEN-LAST:event_txtNameActionPerformed
 
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
-        String regExp = "^[A-Z-a-z]{5,}";// A-z necessário 4 digítos 
-        
+        String regExp = "^[A-Z-a-z]{5}";
+        String regExpPassword = "[A-Z-a-z]{5}(?=[0-9]{1})";
+
         /* COMEÇO TESTS BIBLIOTECAS      */
         Date date = new Date();
         Locale local = Locale.getDefault();
@@ -154,6 +156,7 @@ public class NewJFrameTelaCadastro extends javax.swing.JFrame {
             System.out.println("a sua altura não é 768 e a sua largura não é 1366");
         }
         /* /FIM TESTS BIBLIOTECAS      */
+        
         if (txtName.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Preencha o nome do usuário");
             txtName.requestFocus();
@@ -165,6 +168,10 @@ public class NewJFrameTelaCadastro extends javax.swing.JFrame {
         }
         if (!txtName.getText().toString().matches(regExp)) {
             JOptionPane.showMessageDialog(null, "Erro o nome do usuário está inválido");
+            return;
+        }
+        if (!txtSenhaCadastro.getText().toString().matches(regExpPassword)) {
+            JOptionPane.showMessageDialog(null, "Erro senha precisa de 5 caracteres e 1 número");
             return;
         }
         if (txtSenhaCadastro.getPassword().toString().equals("")) {
@@ -193,7 +200,7 @@ public class NewJFrameTelaCadastro extends javax.swing.JFrame {
                 txtRepitaSenha.setText("");
                 txtSenhaCadastro.setText("");
                 cmbComboBoxCargos.requestFocus();
-                
+
                 JOptionPane.showMessageDialog(btnCadastrar, " user created ");
             } else {
                 JOptionPane.showMessageDialog(btnCadastrar, " erro as senhas não são iguais! ");
@@ -211,7 +218,6 @@ public class NewJFrameTelaCadastro extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_cmbComboBoxCargosActionPerformed
 
-    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -248,6 +254,7 @@ public class NewJFrameTelaCadastro extends javax.swing.JFrame {
     private javax.swing.JButton btnCadastrar;
     private javax.swing.JButton btnVoltar;
     private javax.swing.JComboBox<String> cmbComboBoxCargos;
+    private java.awt.Label label1;
     private javax.swing.JLabel lblNome;
     private javax.swing.JLabel lblSenha;
     private javax.swing.JLabel lblSenha1;
