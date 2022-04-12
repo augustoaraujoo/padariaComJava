@@ -157,24 +157,24 @@ public class NewJFrameTelaCadastro extends javax.swing.JFrame {
         }
         /* /FIM TESTS BIBLIOTECAS      */
         
-        if (txtName.getText().equals("")) {
+        if (txtName.getText().trim().equals("")) {
             JOptionPane.showMessageDialog(null, "Preencha o nome do usuário");
             txtName.requestFocus();
             return;
         }
-        if (txtName.getText().length() > 10) {
+        if (txtName.getText().trim().length() > 10) {
             JOptionPane.showMessageDialog(null, "Erro o nome do usuário precisa ter até 10 caracteres");
             return;
         }
-        if (!txtName.getText().toString().matches(regExp)) {
+        if (!txtName.getText().trim().toString().matches(regExp)) {
             JOptionPane.showMessageDialog(null, "Erro o nome do usuário está inválido");
             return;
         }
-        if (!txtSenhaCadastro.getText().toString().matches(regExpPassword)) {
+        if (!txtSenhaCadastro.getText().trim().toString().matches(regExpPassword)) {
             JOptionPane.showMessageDialog(null, "Erro senha precisa de 5 caracteres e 1 número");
             return;
         }
-        if (txtSenhaCadastro.getPassword().toString().equals("")) {
+        if (txtSenhaCadastro.getPassword().toString().trim().equals("")) {
             JOptionPane.showMessageDialog(null, "Preencha a senha ");
             txtSenhaCadastro.requestFocus();
             return;
@@ -191,9 +191,9 @@ public class NewJFrameTelaCadastro extends javax.swing.JFrame {
 
                 st = conexao.prepareStatement("INSERT INTO usuarios VALUES (?, ?, ?)");
 
-                st.setString(1, txtName.getText());
-                st.setString(2, txtSenhaCadastro.getText());
-                st.setString(3, cmbComboBoxCargos.getSelectedItem().toString());
+                st.setString(1, txtName.getText().trim());
+                st.setString(2, txtSenhaCadastro.getText().trim());
+                st.setString(3, cmbComboBoxCargos.getSelectedItem().toString().trim());
                 st.executeUpdate();
 
                 txtName.setText("");

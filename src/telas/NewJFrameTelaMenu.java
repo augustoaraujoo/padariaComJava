@@ -23,6 +23,7 @@ public class NewJFrameTelaMenu extends javax.swing.JFrame {
 
         if (cargo.equalsIgnoreCase("Caixa") || cargo.equalsIgnoreCase("Balconista")) {
             verificaCargoUsuario();
+
             lblSaudacao.setText("Welcome ," + nome);
         } else if (cargo.equalsIgnoreCase("Gerente")) {
             lblSaudacao.setText("Welcome " + cargo + ":" + nome);
@@ -57,10 +58,10 @@ public class NewJFrameTelaMenu extends javax.swing.JFrame {
         lblNomeProduto = new javax.swing.JLabel();
         lblMarcaProduto = new javax.swing.JLabel();
         txtCodigoProduto = new javax.swing.JTextField();
-        txtMarcaProduto = new javax.swing.JTextField();
+        txtCategoriaProduto = new javax.swing.JTextField();
         txtNomeProduto = new javax.swing.JTextField();
         btnCadastrar = new javax.swing.JButton();
-        btnAlterarProduto = new javax.swing.JButton();
+        btnConsultar = new javax.swing.JButton();
         lblBackground = new javax.swing.JLabel();
         barMenu = new javax.swing.JMenuBar();
         mnuProdutos = new javax.swing.JMenu();
@@ -83,7 +84,7 @@ public class NewJFrameTelaMenu extends javax.swing.JFrame {
 
         lblSaudacao.setBackground(new java.awt.Color(51, 51, 51));
         lblSaudacao.setFont(new java.awt.Font("Aharoni", 0, 12)); // NOI18N
-        lblSaudacao.setForeground(new java.awt.Color(255, 255, 255));
+        lblSaudacao.setForeground(new java.awt.Color(0, 151, 224));
         getContentPane().add(lblSaudacao);
         lblSaudacao.setBounds(220, 0, 190, 30);
 
@@ -114,7 +115,7 @@ public class NewJFrameTelaMenu extends javax.swing.JFrame {
         lblNomeProduto.setBounds(10, 60, 110, 30);
 
         lblMarcaProduto.setFont(new java.awt.Font("Aharoni", 0, 12)); // NOI18N
-        lblMarcaProduto.setText("Marca do produto");
+        lblMarcaProduto.setText("Categoria  produto");
         pnlCadastrarProdutos.add(lblMarcaProduto);
         lblMarcaProduto.setBounds(10, 100, 110, 30);
 
@@ -127,9 +128,14 @@ public class NewJFrameTelaMenu extends javax.swing.JFrame {
         pnlCadastrarProdutos.add(txtCodigoProduto);
         txtCodigoProduto.setBounds(130, 20, 150, 30);
 
-        txtMarcaProduto.setBackground(new java.awt.Color(204, 204, 204));
-        pnlCadastrarProdutos.add(txtMarcaProduto);
-        txtMarcaProduto.setBounds(130, 100, 150, 30);
+        txtCategoriaProduto.setBackground(new java.awt.Color(204, 204, 204));
+        txtCategoriaProduto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCategoriaProdutoActionPerformed(evt);
+            }
+        });
+        pnlCadastrarProdutos.add(txtCategoriaProduto);
+        txtCategoriaProduto.setBounds(130, 100, 150, 30);
 
         txtNomeProduto.setBackground(new java.awt.Color(204, 204, 204));
         pnlCadastrarProdutos.add(txtNomeProduto);
@@ -142,19 +148,19 @@ public class NewJFrameTelaMenu extends javax.swing.JFrame {
             }
         });
         pnlCadastrarProdutos.add(btnCadastrar);
-        btnCadastrar.setBounds(300, 140, 100, 30);
+        btnCadastrar.setBounds(10, 180, 100, 30);
 
-        btnAlterarProduto.setText("Alterar");
-        btnAlterarProduto.addActionListener(new java.awt.event.ActionListener() {
+        btnConsultar.setText("Consultar");
+        btnConsultar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAlterarProdutoActionPerformed(evt);
+                btnConsultarActionPerformed(evt);
             }
         });
-        pnlCadastrarProdutos.add(btnAlterarProduto);
-        btnAlterarProduto.setBounds(300, 90, 100, 30);
+        pnlCadastrarProdutos.add(btnConsultar);
+        btnConsultar.setBounds(10, 180, 100, 30);
 
         getContentPane().add(pnlCadastrarProdutos);
-        pnlCadastrarProdutos.setBounds(0, 40, 410, 190);
+        pnlCadastrarProdutos.setBounds(0, 40, 410, 240);
 
         lblBackground.setIcon(new javax.swing.ImageIcon("C:\\Users\\Residencia\\Desktop\\pane-scaled-1-600x400.jpg")); // NOI18N
         getContentPane().add(lblBackground);
@@ -272,11 +278,11 @@ public class NewJFrameTelaMenu extends javax.swing.JFrame {
 
     private void itmCadastrarProdutosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itmCadastrarProdutosActionPerformed
         pnlCadastrarProdutos.setVisible(true);
-
+        btnConsultar.setVisible(false);
+        btnCadastrar.setVisible(true);
     }//GEN-LAST:event_itmCadastrarProdutosActionPerformed
 
     private void itmAlterarProdutosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itmAlterarProdutosActionPerformed
-        pnlCadastrarProdutos.setVisible(true);
     }//GEN-LAST:event_itmAlterarProdutosActionPerformed
 
     private void itmExcluirProdutosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itmExcluirProdutosActionPerformed
@@ -285,6 +291,9 @@ public class NewJFrameTelaMenu extends javax.swing.JFrame {
 
     private void itmRelatoriosProdutosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itmRelatoriosProdutosActionPerformed
         // TODO add your handling code here:
+        pnlCadastrarProdutos.setVisible(true);
+        btnCadastrar.setVisible(false);
+        btnConsultar.setVisible(true);
     }//GEN-LAST:event_itmRelatoriosProdutosActionPerformed
 
     private void itmCadastrarFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itmCadastrarFuncionarioActionPerformed
@@ -314,12 +323,21 @@ public class NewJFrameTelaMenu extends javax.swing.JFrame {
         PreparedStatement st;
         ResultSet rs;
 
-        if (txtCodigoProduto.getText().equals("")) {
+        if (txtCodigoProduto.getText().trim().equals("")) {
             JOptionPane.showMessageDialog(null, "ERRO NOME VAZIO | INVÁLIDO ");
             return;
         }
 
-        if (txtPrecoProduto.getText().equals("")) {
+        if (txtPrecoProduto.getText().trim().equals("")) {
+            JOptionPane.showMessageDialog(null, "ERRO CAMPO VAZIO ");
+            return;
+        }
+        if (txtNomeProduto.getText().trim().equals("")) {
+            JOptionPane.showMessageDialog(null, "ERRO CAMPO VAZIO ");
+            return;
+
+        }
+        if (txtCategoriaProduto.getText().trim().equals("")) {
             JOptionPane.showMessageDialog(null, "ERRO CAMPO VAZIO ");
             return;
         }
@@ -330,23 +348,30 @@ public class NewJFrameTelaMenu extends javax.swing.JFrame {
                 conexao = DriverManager.getConnection("jdbc:postgresql://localhost:5433/padaria", "postgres", "root");
                 st = conexao.prepareStatement("INSERT INTO PRODUTOS VALUES (?,?,?,?)");
 
-                st.setString(1, txtMarcaProduto.getText());
-                st.setString(2, txtNomeProduto.getText());
-                st.setString(3, txtPrecoProduto.getText());
-                st.setString(4, txtCodigoProduto.getText());
+                st.setString(1, txtCategoriaProduto.getText().trim());
+                st.setString(2, txtNomeProduto.getText().trim());
+                st.setDouble(3, Double.parseDouble(txtPrecoProduto.getText().trim()));
+                st.setString(4, txtCodigoProduto.getText().trim());
                 st.executeUpdate();
 
             } catch (SQLException ex) {
-                JOptionPane.showMessageDialog(null, " erro " + ex.getMessage());
-                return;
+                if (ex.getErrorCode() == 0) {
+                    JOptionPane.showMessageDialog(null, " ERRO: O Código já existe " + "crie outro" + ex.getMessage() + ex.getErrorCode());
+                    return;
+                } else {
+                    JOptionPane.showMessageDialog(null, " ERRO " + ex.getMessage() + ex.getErrorCode());
+                    return;
+                }
             }
 
         } catch (ClassNotFoundException ex) {
+            //0 in postgres error / duplicate primary key
+
             JOptionPane.showMessageDialog(null, " erro " + ex.getMessage());
             return;
         }
 
-        txtMarcaProduto.setText("");
+        txtCategoriaProduto.setText("");
         txtNomeProduto.setText("");
         txtPrecoProduto.setText("");
         txtCodigoProduto.setText("");
@@ -356,51 +381,13 @@ public class NewJFrameTelaMenu extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtPrecoProdutoActionPerformed
 
-    private void btnAlterarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarProdutoActionPerformed
-        System.out.println("");
-        Connection conexao;
-        PreparedStatement st;
-        ResultSet rs;
-        try {
-            Class.forName("org.postgresql.Driver");
-            try {
-                conexao = DriverManager.getConnection("jdbc:postgresql://localhost:5433/padaria", "postgres", "root");
-                st = conexao.prepareStatement("SELECT * FROM PRODUTOS where código_produto=? ");
-                st.setString(1, txtCodigoProduto.getText());
-                rs = st.executeQuery();
-                
-                st = conexao.prepareStatement("UPDATE PRODUTOS SET marca_produto=?,nome_produto=?,preço_produto=?,código_produto=? WHERE código_produto=?");
+    private void btnConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnConsultarActionPerformed
 
-                if (rs.next()) {
-
-                    st.setString(1, txtMarcaProduto.getText());
-                    st.setString(2, txtNomeProduto.getText());
-                    st.setString(3, txtPrecoProduto.getText());
-                    st.setString(4, txtCodigoProduto.getText());
-                    st.setString(5, txtCodigoProduto.getText().toString());
-                    st.executeUpdate();
-
-                    txtMarcaProduto.setText("");
-                    txtNomeProduto.setText("");
-                    txtPrecoProduto.setText("");
-                    txtCodigoProduto.setText("");
-                } else {
-                    JOptionPane.showMessageDialog(btnCadastrar, " erro no parâmetro código! ");
-                    return;
-                }
-
-            } catch (SQLException ex) {
-                JOptionPane.showMessageDialog(null, " erro " + ex.getMessage());
-                return;
-            }
-
-        } catch (ClassNotFoundException ex) {
-            JOptionPane.showMessageDialog(null, " erro " + ex.getMessage());
-            return;
-        }
-
-
-    }//GEN-LAST:event_btnAlterarProdutoActionPerformed
+    private void txtCategoriaProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCategoriaProdutoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCategoriaProdutoActionPerformed
 
     public static void main(String args[]) {
 
@@ -430,8 +417,8 @@ public class NewJFrameTelaMenu extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuBar barMenu;
-    private javax.swing.JButton btnAlterarProduto;
     private javax.swing.JButton btnCadastrar;
+    private javax.swing.JButton btnConsultar;
     private javax.swing.JMenuItem imtAtualizarFuncionario;
     private javax.swing.JMenuItem itmAlterarProdutos;
     private javax.swing.JMenuItem itmCadastrarFuncionario;
@@ -451,8 +438,8 @@ public class NewJFrameTelaMenu extends javax.swing.JFrame {
     private javax.swing.JMenu mnuFuncionarios;
     private javax.swing.JMenu mnuProdutos;
     private javax.swing.JPanel pnlCadastrarProdutos;
+    private javax.swing.JTextField txtCategoriaProduto;
     private javax.swing.JTextField txtCodigoProduto;
-    private javax.swing.JTextField txtMarcaProduto;
     private javax.swing.JTextField txtNomeProduto;
     private javax.swing.JTextField txtPrecoProduto;
     // End of variables declaration//GEN-END:variables

@@ -128,13 +128,13 @@ public class NewJFrameTelaLogin extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCadastrarActionPerformed
 
     private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarActionPerformed
-        if (txtUsuario.getText().equals("")) {
+        if (txtUsuario.getText().trim().equals("")) {
             JOptionPane.showMessageDialog(null, "campo vazio");
             lblUsuario.requestFocus();
             return;
         }
-        if (txtSenha.getText().equals("")) {
-            JOptionPane.showConfirmDialog(null, "");
+        if (txtSenha.getPassword().toString().trim().equals("")) {
+            JOptionPane.showConfirmDialog(null, "erro campo vazio");
             lblSenha.requestFocus();
             return;
         }
