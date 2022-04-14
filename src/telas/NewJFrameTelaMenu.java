@@ -148,7 +148,7 @@ public class NewJFrameTelaMenu extends javax.swing.JFrame {
             }
         });
         pnlCadastrarProdutos.add(btnCadastrar);
-        btnCadastrar.setBounds(10, 180, 100, 30);
+        btnCadastrar.setBounds(130, 180, 100, 30);
 
         btnConsultar.setText("Consultar");
         btnConsultar.addActionListener(new java.awt.event.ActionListener() {
@@ -290,10 +290,12 @@ public class NewJFrameTelaMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_itmExcluirProdutosActionPerformed
 
     private void itmRelatoriosProdutosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itmRelatoriosProdutosActionPerformed
-        // TODO add your handling code here:
+
         pnlCadastrarProdutos.setVisible(true);
         btnCadastrar.setVisible(false);
         btnConsultar.setVisible(true);
+
+
     }//GEN-LAST:event_itmRelatoriosProdutosActionPerformed
 
     private void itmCadastrarFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itmCadastrarFuncionarioActionPerformed
@@ -382,11 +384,46 @@ public class NewJFrameTelaMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_txtPrecoProdutoActionPerformed
 
     private void btnConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarActionPerformed
-        // TODO add your handling code here:
+        if (txtCodigoProduto.getText().trim().equals("")) {
+            JOptionPane.showMessageDialog(null, "Preencha o código do produto");
+            txtCodigoProduto.requestFocus();
+            return;
+        }
+        try {
+            Connection conexao;
+            PreparedStatement st;
+            ResultSet rs;
+
+            Class.forName("org.postgresql.Driver");
+
+            conexao = DriverManager.getConnection("jdbc:postgresql://localhost:5433/padaria", "postgres", "root");
+            st = conexao.prepareStatement("SELECT * FROM produtos where código_produto=?");
+            System.out.println("nome_produto");
+
+            st.setString(1, txtCodigoProduto.getText());
+            rs = st.executeQuery();
+
+            if (rs.next()) {
+                txtNomeProduto.setText(rs.getString("nome_produto"));
+                txtCategoriaProduto.setText(rs.getString("categoria_produto"));
+                txtPrecoProduto.setText(rs.getString("preço_produto"));
+
+            } else {
+                JOptionPane.showMessageDialog(null, "Produto n”ao encontrado");
+                txtCodigoProduto.requestFocus();
+                return;
+            }
+        } catch (ClassNotFoundException ex) {
+            JOptionPane.showMessageDialog(null, "Você não tem o driver na biblioteca");
+            return;
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Algum parâmetro do BD está incorreto");
+            return;
+        }
     }//GEN-LAST:event_btnConsultarActionPerformed
 
     private void txtCategoriaProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCategoriaProdutoActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_txtCategoriaProdutoActionPerformed
 
     public static void main(String args[]) {
