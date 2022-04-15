@@ -23,7 +23,7 @@ public class NewJFrameTelaMenu extends javax.swing.JFrame {
 
         if (cargo.equalsIgnoreCase("Caixa") || cargo.equalsIgnoreCase("Balconista")) {
             verificaCargoUsuario();
-
+//
             lblSaudacao.setText("Welcome ," + nome);
         } else if (cargo.equalsIgnoreCase("Gerente")) {
             lblSaudacao.setText("Welcome " + cargo + ":" + nome);
@@ -62,6 +62,8 @@ public class NewJFrameTelaMenu extends javax.swing.JFrame {
         txtNomeProduto = new javax.swing.JTextField();
         btnCadastrar = new javax.swing.JButton();
         btnConsultar = new javax.swing.JButton();
+        btnExcluir = new javax.swing.JButton();
+        jComboBox1 = new javax.swing.JComboBox<>();
         lblBackground = new javax.swing.JLabel();
         barMenu = new javax.swing.JMenuBar();
         mnuProdutos = new javax.swing.JMenu();
@@ -148,7 +150,7 @@ public class NewJFrameTelaMenu extends javax.swing.JFrame {
             }
         });
         pnlCadastrarProdutos.add(btnCadastrar);
-        btnCadastrar.setBounds(130, 180, 100, 30);
+        btnCadastrar.setBounds(120, 180, 100, 30);
 
         btnConsultar.setText("Consultar");
         btnConsultar.addActionListener(new java.awt.event.ActionListener() {
@@ -158,6 +160,24 @@ public class NewJFrameTelaMenu extends javax.swing.JFrame {
         });
         pnlCadastrarProdutos.add(btnConsultar);
         btnConsultar.setBounds(10, 180, 100, 30);
+
+        btnExcluir.setText("Excluir");
+        btnExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExcluirActionPerformed(evt);
+            }
+        });
+        pnlCadastrarProdutos.add(btnExcluir);
+        btnExcluir.setBounds(230, 180, 100, 30);
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
+        pnlCadastrarProdutos.add(jComboBox1);
+        jComboBox1.setBounds(301, 80, 90, 22);
 
         getContentPane().add(pnlCadastrarProdutos);
         pnlCadastrarProdutos.setBounds(0, 40, 410, 240);
@@ -280,13 +300,19 @@ public class NewJFrameTelaMenu extends javax.swing.JFrame {
         pnlCadastrarProdutos.setVisible(true);
         btnConsultar.setVisible(false);
         btnCadastrar.setVisible(true);
+        btnExcluir.setVisible(false);
+
     }//GEN-LAST:event_itmCadastrarProdutosActionPerformed
 
     private void itmAlterarProdutosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itmAlterarProdutosActionPerformed
     }//GEN-LAST:event_itmAlterarProdutosActionPerformed
 
     private void itmExcluirProdutosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itmExcluirProdutosActionPerformed
-        // TODO add your handling code here:
+        pnlCadastrarProdutos.setVisible(true);
+        btnCadastrar.setVisible(false);
+        btnExcluir.setVisible(true);
+        btnConsultar.setVisible(true);
+
     }//GEN-LAST:event_itmExcluirProdutosActionPerformed
 
     private void itmRelatoriosProdutosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itmRelatoriosProdutosActionPerformed
@@ -294,6 +320,7 @@ public class NewJFrameTelaMenu extends javax.swing.JFrame {
         pnlCadastrarProdutos.setVisible(true);
         btnCadastrar.setVisible(false);
         btnConsultar.setVisible(true);
+        btnExcluir.setVisible(false);
 
 
     }//GEN-LAST:event_itmRelatoriosProdutosActionPerformed
@@ -321,32 +348,33 @@ public class NewJFrameTelaMenu extends javax.swing.JFrame {
 
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
 
-        Connection conexao;
-        PreparedStatement st;
-        ResultSet rs;
-
-        if (txtCodigoProduto.getText().trim().equals("")) {
-            JOptionPane.showMessageDialog(null, "ERRO NOME VAZIO | INVÁLIDO ");
-            return;
-        }
-
-        if (txtPrecoProduto.getText().trim().equals("")) {
-            JOptionPane.showMessageDialog(null, "ERRO CAMPO VAZIO ");
-            return;
-        }
-        if (txtNomeProduto.getText().trim().equals("")) {
-            JOptionPane.showMessageDialog(null, "ERRO CAMPO VAZIO ");
-            return;
-
-        }
-        if (txtCategoriaProduto.getText().trim().equals("")) {
-            JOptionPane.showMessageDialog(null, "ERRO CAMPO VAZIO ");
-            return;
-        }
-
         try {
+            Connection conexao;
+            PreparedStatement st;
+            ResultSet rs;
+
+            if (txtCodigoProduto.getText().trim().equals("")) {
+                JOptionPane.showMessageDialog(null, "ERRO NOME VAZIO | INVÁLIDO ");
+                return;
+            }
+
+            if (txtPrecoProduto.getText().trim().equals("")) {
+                JOptionPane.showMessageDialog(null, "ERRO CAMPO VAZIO ");
+                return;
+            }
+            if (txtNomeProduto.getText().trim().equals("")) {
+                JOptionPane.showMessageDialog(null, "ERRO CAMPO VAZIO ");
+                return;
+
+            }
+            if (txtCategoriaProduto.getText().trim().equals("")) {
+                JOptionPane.showMessageDialog(null, "ERRO CAMPO VAZIO ");
+                return;
+            }
+
             Class.forName("org.postgresql.Driver");
             try {
+
                 conexao = DriverManager.getConnection("jdbc:postgresql://localhost:5433/padaria", "postgres", "root");
                 st = conexao.prepareStatement("INSERT INTO PRODUTOS VALUES (?,?,?,?)");
 
@@ -356,27 +384,25 @@ public class NewJFrameTelaMenu extends javax.swing.JFrame {
                 st.setString(4, txtCodigoProduto.getText().trim());
                 st.executeUpdate();
 
+                txtCategoriaProduto.setText("");
+                txtNomeProduto.setText("");
+                txtPrecoProduto.setText("");
+                txtCodigoProduto.setText("");
             } catch (SQLException ex) {
                 if (ex.getErrorCode() == 0) {
                     JOptionPane.showMessageDialog(null, " ERRO: O Código já existe " + "crie outro" + ex.getMessage() + ex.getErrorCode());
                     return;
-                } else {
-                    JOptionPane.showMessageDialog(null, " ERRO " + ex.getMessage() + ex.getErrorCode());
-                    return;
+
                 }
+
             }
 
         } catch (ClassNotFoundException ex) {
-            //0 in postgres error / duplicate primary key
-
-            JOptionPane.showMessageDialog(null, " erro " + ex.getMessage());
+            Logger.getLogger(NewJFrameTelaMenu.class.getName()).log(Level.SEVERE, null, ex);
             return;
         }
 
-        txtCategoriaProduto.setText("");
-        txtNomeProduto.setText("");
-        txtPrecoProduto.setText("");
-        txtCodigoProduto.setText("");
+
     }//GEN-LAST:event_btnCadastrarActionPerformed
 
     private void txtPrecoProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPrecoProdutoActionPerformed
@@ -384,7 +410,9 @@ public class NewJFrameTelaMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_txtPrecoProdutoActionPerformed
 
     private void btnConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarActionPerformed
+
         if (txtCodigoProduto.getText().trim().equals("")) {
+
             JOptionPane.showMessageDialog(null, "Preencha o código do produto");
             txtCodigoProduto.requestFocus();
             return;
@@ -398,9 +426,8 @@ public class NewJFrameTelaMenu extends javax.swing.JFrame {
 
             conexao = DriverManager.getConnection("jdbc:postgresql://localhost:5433/padaria", "postgres", "root");
             st = conexao.prepareStatement("SELECT * FROM produtos where código_produto=?");
-            System.out.println("nome_produto");
 
-            st.setString(1, txtCodigoProduto.getText());
+            st.setString(1, txtCodigoProduto.getText().trim());
             rs = st.executeQuery();
 
             if (rs.next()) {
@@ -425,6 +452,52 @@ public class NewJFrameTelaMenu extends javax.swing.JFrame {
     private void txtCategoriaProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCategoriaProdutoActionPerformed
 
     }//GEN-LAST:event_txtCategoriaProdutoActionPerformed
+
+    private void btnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirActionPerformed
+
+        if (txtCodigoProduto.getText().trim().equals("")) {
+            JOptionPane.showMessageDialog(null, "Preencha o código do produto");
+            txtCodigoProduto.requestFocus();
+            return;
+        }
+        try {
+            Connection conexao;
+            PreparedStatement st;
+
+            Class.forName("org.postgresql.Driver");
+
+            conexao = DriverManager.getConnection("jdbc:postgresql://localhost:5433/padaria", "postgres", "root");
+            st = conexao.prepareStatement("DELETE FROM produtos where código_produto=?");
+
+            st.setString(1, txtCodigoProduto.getText().trim());
+            int rs = st.executeUpdate();
+
+            if (rs == 1) {
+                JOptionPane.showMessageDialog(null, "Produto Exlcuido");
+
+                txtCategoriaProduto.setText("");
+                txtCodigoProduto.setText("");
+                txtNomeProduto.setText("");
+                txtPrecoProduto.setText("");
+
+            } else {
+                JOptionPane.showMessageDialog(null, "Produto não encontrado");
+                txtCodigoProduto.requestFocus();
+                return;
+            }
+        } catch (ClassNotFoundException ex) {
+            JOptionPane.showMessageDialog(null, "Você não tem o driver na biblioteca");
+            return;
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Algum parâmetro do BD está incorreto");
+            return;
+        }
+
+    }//GEN-LAST:event_btnExcluirActionPerformed
+
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox1ActionPerformed
 
     public static void main(String args[]) {
 
@@ -456,6 +529,7 @@ public class NewJFrameTelaMenu extends javax.swing.JFrame {
     private javax.swing.JMenuBar barMenu;
     private javax.swing.JButton btnCadastrar;
     private javax.swing.JButton btnConsultar;
+    private javax.swing.JButton btnExcluir;
     private javax.swing.JMenuItem imtAtualizarFuncionario;
     private javax.swing.JMenuItem itmAlterarProdutos;
     private javax.swing.JMenuItem itmCadastrarFuncionario;
@@ -465,6 +539,7 @@ public class NewJFrameTelaMenu extends javax.swing.JFrame {
     private javax.swing.JMenuItem itmManual;
     private javax.swing.JMenuItem itmRelatorioFuncionario;
     private javax.swing.JMenuItem itmRelatoriosProdutos;
+    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel lblBackground;
     private javax.swing.JLabel lblCodigoProduto;
     private javax.swing.JLabel lblMarcaProduto;
