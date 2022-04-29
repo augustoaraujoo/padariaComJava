@@ -38,19 +38,20 @@ public class NewJFrameTelaLogin extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Acesso ao Sistema");
+        setBackground(new java.awt.Color(204, 204, 255));
         getContentPane().setLayout(null);
 
-        lblUsuario.setFont(new java.awt.Font("Aharoni", 0, 14)); // NOI18N
+        lblUsuario.setFont(new java.awt.Font("Aharoni", 0, 18)); // NOI18N
         lblUsuario.setForeground(new java.awt.Color(120, 166, 233));
         lblUsuario.setText("Usuário");
         getContentPane().add(lblUsuario);
-        lblUsuario.setBounds(40, 30, 70, 30);
+        lblUsuario.setBounds(90, 20, 80, 40);
 
-        lblSenha.setFont(new java.awt.Font("Aharoni", 0, 14)); // NOI18N
+        lblSenha.setFont(new java.awt.Font("Aharoni", 0, 18)); // NOI18N
         lblSenha.setForeground(new java.awt.Color(120, 166, 233));
         lblSenha.setText("Senha");
         getContentPane().add(lblSenha);
-        lblSenha.setBounds(40, 70, 70, 30);
+        lblSenha.setBounds(90, 120, 80, 30);
 
         txtUsuario.setBackground(new java.awt.Color(252, 232, 222));
         txtUsuario.setForeground(new java.awt.Color(0, 0, 204));
@@ -66,7 +67,7 @@ public class NewJFrameTelaLogin extends javax.swing.JFrame {
             }
         });
         getContentPane().add(txtUsuario);
-        txtUsuario.setBounds(120, 30, 260, 30);
+        txtUsuario.setBounds(90, 60, 260, 40);
 
         txtSenha.setBackground(new java.awt.Color(252, 232, 222));
         txtSenha.setMargin(new java.awt.Insets(0, 0, 0, 0));
@@ -81,10 +82,10 @@ public class NewJFrameTelaLogin extends javax.swing.JFrame {
             }
         });
         getContentPane().add(txtSenha);
-        txtSenha.setBounds(120, 70, 260, 30);
+        txtSenha.setBounds(90, 150, 260, 40);
 
         btnCadastrar.setBackground(java.awt.Color.white);
-        btnCadastrar.setFont(new java.awt.Font("Aharoni", 0, 14)); // NOI18N
+        btnCadastrar.setFont(new java.awt.Font("Aharoni", 0, 15)); // NOI18N
         btnCadastrar.setForeground(new java.awt.Color(80, 122, 244));
         btnCadastrar.setText("Cadastrar-se");
         btnCadastrar.setBorderPainted(false);
@@ -96,8 +97,11 @@ public class NewJFrameTelaLogin extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnCadastrar);
-        btnCadastrar.setBounds(210, 280, 130, 30);
+        btnCadastrar.setBounds(220, 280, 130, 30);
 
+        btnEntrar.setBackground(new java.awt.Color(204, 204, 255));
+        btnEntrar.setFont(new java.awt.Font("Aharoni", 0, 14)); // NOI18N
+        btnEntrar.setForeground(new java.awt.Color(80, 122, 244));
         btnEntrar.setText("Entrar");
         btnEntrar.setMargin(new java.awt.Insets(0, 0, 0, 0));
         btnEntrar.addActionListener(new java.awt.event.ActionListener() {
@@ -106,9 +110,9 @@ public class NewJFrameTelaLogin extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnEntrar);
-        btnEntrar.setBounds(150, 160, 120, 30);
+        btnEntrar.setBounds(150, 210, 130, 40);
 
-        lblMensagem.setFont(new java.awt.Font("Aharoni", 0, 14)); // NOI18N
+        lblMensagem.setFont(new java.awt.Font("Aharoni", 0, 15)); // NOI18N
         lblMensagem.setText("Não está cadastrado ?");
         getContentPane().add(lblMensagem);
         lblMensagem.setBounds(70, 280, 170, 30);

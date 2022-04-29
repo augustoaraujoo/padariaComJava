@@ -7,8 +7,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 
 public class NewJFrameTelaMenu extends javax.swing.JFrame {
@@ -63,7 +61,8 @@ public class NewJFrameTelaMenu extends javax.swing.JFrame {
         btnCadastrar = new javax.swing.JButton();
         btnConsultar = new javax.swing.JButton();
         btnExcluir = new javax.swing.JButton();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        btnAlterarProduto = new javax.swing.JButton();
+        btnOutrosRelatorios = new javax.swing.JButton();
         lblBackground = new javax.swing.JLabel();
         barMenu = new javax.swing.JMenuBar();
         mnuProdutos = new javax.swing.JMenu();
@@ -90,59 +89,66 @@ public class NewJFrameTelaMenu extends javax.swing.JFrame {
         getContentPane().add(lblSaudacao);
         lblSaudacao.setBounds(220, 0, 190, 30);
 
+        pnlCadastrarProdutos.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 3, true));
         pnlCadastrarProdutos.setLayout(null);
 
         lblPrecoProduto.setFont(new java.awt.Font("Aharoni", 0, 12)); // NOI18N
         lblPrecoProduto.setText("preço do produto");
         pnlCadastrarProdutos.add(lblPrecoProduto);
-        lblPrecoProduto.setBounds(10, 140, 110, 30);
+        lblPrecoProduto.setBounds(20, 140, 120, 30);
 
         txtPrecoProduto.setBackground(new java.awt.Color(204, 204, 204));
+        txtPrecoProduto.setFont(new java.awt.Font("Aharoni", 0, 12)); // NOI18N
         txtPrecoProduto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtPrecoProdutoActionPerformed(evt);
             }
         });
         pnlCadastrarProdutos.add(txtPrecoProduto);
-        txtPrecoProduto.setBounds(130, 140, 150, 30);
+        txtPrecoProduto.setBounds(160, 140, 180, 30);
 
         lblCodigoProduto.setFont(new java.awt.Font("Aharoni", 0, 12)); // NOI18N
         lblCodigoProduto.setText("Código do produto");
         pnlCadastrarProdutos.add(lblCodigoProduto);
-        lblCodigoProduto.setBounds(10, 20, 110, 30);
+        lblCodigoProduto.setBounds(20, 20, 120, 30);
 
         lblNomeProduto.setFont(new java.awt.Font("Aharoni", 0, 12)); // NOI18N
         lblNomeProduto.setText("Nome do produto");
         pnlCadastrarProdutos.add(lblNomeProduto);
-        lblNomeProduto.setBounds(10, 60, 110, 30);
+        lblNomeProduto.setBounds(20, 60, 120, 30);
 
         lblMarcaProduto.setFont(new java.awt.Font("Aharoni", 0, 12)); // NOI18N
         lblMarcaProduto.setText("Categoria  produto");
         pnlCadastrarProdutos.add(lblMarcaProduto);
-        lblMarcaProduto.setBounds(10, 100, 110, 30);
+        lblMarcaProduto.setBounds(20, 100, 120, 30);
 
         txtCodigoProduto.setBackground(new java.awt.Color(204, 204, 204));
+        txtCodigoProduto.setFont(new java.awt.Font("Aharoni", 0, 12)); // NOI18N
         txtCodigoProduto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtCodigoProdutoActionPerformed(evt);
             }
         });
         pnlCadastrarProdutos.add(txtCodigoProduto);
-        txtCodigoProduto.setBounds(130, 20, 150, 30);
+        txtCodigoProduto.setBounds(160, 20, 180, 30);
 
         txtCategoriaProduto.setBackground(new java.awt.Color(204, 204, 204));
+        txtCategoriaProduto.setFont(new java.awt.Font("Aharoni", 0, 12)); // NOI18N
         txtCategoriaProduto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtCategoriaProdutoActionPerformed(evt);
             }
         });
         pnlCadastrarProdutos.add(txtCategoriaProduto);
-        txtCategoriaProduto.setBounds(130, 100, 150, 30);
+        txtCategoriaProduto.setBounds(160, 100, 180, 30);
 
         txtNomeProduto.setBackground(new java.awt.Color(204, 204, 204));
+        txtNomeProduto.setFont(new java.awt.Font("Aharoni", 0, 12)); // NOI18N
         pnlCadastrarProdutos.add(txtNomeProduto);
-        txtNomeProduto.setBounds(130, 60, 150, 30);
+        txtNomeProduto.setBounds(160, 60, 180, 30);
 
+        btnCadastrar.setBackground(new java.awt.Color(204, 204, 255));
+        btnCadastrar.setFont(new java.awt.Font("Aharoni", 0, 12)); // NOI18N
         btnCadastrar.setText("Cadastrar");
         btnCadastrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -150,8 +156,10 @@ public class NewJFrameTelaMenu extends javax.swing.JFrame {
             }
         });
         pnlCadastrarProdutos.add(btnCadastrar);
-        btnCadastrar.setBounds(120, 180, 100, 30);
+        btnCadastrar.setBounds(210, 190, 90, 30);
 
+        btnConsultar.setBackground(new java.awt.Color(204, 204, 255));
+        btnConsultar.setFont(new java.awt.Font("Aharoni", 0, 12)); // NOI18N
         btnConsultar.setText("Consultar");
         btnConsultar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -159,8 +167,10 @@ public class NewJFrameTelaMenu extends javax.swing.JFrame {
             }
         });
         pnlCadastrarProdutos.add(btnConsultar);
-        btnConsultar.setBounds(10, 180, 100, 30);
+        btnConsultar.setBounds(10, 190, 90, 30);
 
+        btnExcluir.setBackground(new java.awt.Color(204, 204, 255));
+        btnExcluir.setFont(new java.awt.Font("Aharoni", 0, 12)); // NOI18N
         btnExcluir.setText("Excluir");
         btnExcluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -168,23 +178,34 @@ public class NewJFrameTelaMenu extends javax.swing.JFrame {
             }
         });
         pnlCadastrarProdutos.add(btnExcluir);
-        btnExcluir.setBounds(230, 180, 100, 30);
+        btnExcluir.setBounds(310, 190, 90, 30);
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+        btnAlterarProduto.setBackground(new java.awt.Color(204, 204, 255));
+        btnAlterarProduto.setFont(new java.awt.Font("Aharoni", 0, 12)); // NOI18N
+        btnAlterarProduto.setText("Alterar");
+        btnAlterarProduto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
+                btnAlterarProdutoActionPerformed(evt);
             }
         });
-        pnlCadastrarProdutos.add(jComboBox1);
-        jComboBox1.setBounds(301, 80, 90, 22);
+        pnlCadastrarProdutos.add(btnAlterarProduto);
+        btnAlterarProduto.setBounds(110, 190, 90, 30);
+
+        btnOutrosRelatorios.setText("Outros Relatórios");
+        btnOutrosRelatorios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnOutrosRelatoriosActionPerformed(evt);
+            }
+        });
+        pnlCadastrarProdutos.add(btnOutrosRelatorios);
+        btnOutrosRelatorios.setBounds(220, 190, 140, 25);
 
         getContentPane().add(pnlCadastrarProdutos);
-        pnlCadastrarProdutos.setBounds(0, 40, 410, 240);
+        pnlCadastrarProdutos.setBounds(0, 40, 410, 250);
 
         lblBackground.setIcon(new javax.swing.ImageIcon("C:\\Users\\Residencia\\Desktop\\pane-scaled-1-600x400.jpg")); // NOI18N
         getContentPane().add(lblBackground);
-        lblBackground.setBounds(0, -20, 410, 330);
+        lblBackground.setBounds(-70, -100, 530, 410);
 
         mnuProdutos.setMnemonic('P');
         mnuProdutos.setText("Produtos");
@@ -301,10 +322,19 @@ public class NewJFrameTelaMenu extends javax.swing.JFrame {
         btnConsultar.setVisible(false);
         btnCadastrar.setVisible(true);
         btnExcluir.setVisible(false);
+        btnAlterarProduto.setVisible(false);
+        btnOutrosRelatorios.setVisible(false);
 
     }//GEN-LAST:event_itmCadastrarProdutosActionPerformed
 
     private void itmAlterarProdutosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itmAlterarProdutosActionPerformed
+
+        pnlCadastrarProdutos.setVisible(true);
+        btnCadastrar.setVisible(false);
+        btnExcluir.setVisible(false);
+        btnConsultar.setVisible(false);
+        btnAlterarProduto.setVisible(true);
+        btnOutrosRelatorios.setVisible(false);
     }//GEN-LAST:event_itmAlterarProdutosActionPerformed
 
     private void itmExcluirProdutosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itmExcluirProdutosActionPerformed
@@ -312,7 +342,8 @@ public class NewJFrameTelaMenu extends javax.swing.JFrame {
         btnCadastrar.setVisible(false);
         btnExcluir.setVisible(true);
         btnConsultar.setVisible(true);
-
+        btnAlterarProduto.setVisible(false);
+        btnOutrosRelatorios.setVisible(false);
     }//GEN-LAST:event_itmExcluirProdutosActionPerformed
 
     private void itmRelatoriosProdutosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itmRelatoriosProdutosActionPerformed
@@ -321,7 +352,8 @@ public class NewJFrameTelaMenu extends javax.swing.JFrame {
         btnCadastrar.setVisible(false);
         btnConsultar.setVisible(true);
         btnExcluir.setVisible(false);
-
+        btnAlterarProduto.setVisible(false);
+        btnOutrosRelatorios.setVisible(true);
 
     }//GEN-LAST:event_itmRelatoriosProdutosActionPerformed
 
@@ -495,9 +527,64 @@ public class NewJFrameTelaMenu extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnExcluirActionPerformed
 
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox1ActionPerformed
+    private void btnAlterarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlterarProdutoActionPerformed
+        if (txtCodigoProduto.getText().trim().equals("")) {
+
+            JOptionPane.showMessageDialog(null, "Preencha o código do produto");
+            txtCodigoProduto.requestFocus();
+            return;
+        }
+        if (txtPrecoProduto.getText().trim().equals("")) {
+            JOptionPane.showMessageDialog(null, "ERRO CAMPO VAZIO ");
+            return;
+        }
+        if (txtNomeProduto.getText().trim().equals("")) {
+            JOptionPane.showMessageDialog(null, "ERRO CAMPO VAZIO ");
+            return;
+
+        }
+        if (txtCategoriaProduto.getText().trim().equals("")) {
+            JOptionPane.showMessageDialog(null, "ERRO CAMPO VAZIO ");
+            return;
+        }
+        try {
+            Connection conexao;
+            PreparedStatement st;
+
+            Class.forName("org.postgresql.Driver");
+
+            conexao = DriverManager.getConnection("jdbc:postgresql://localhost:5433/padaria", "postgres", "root");
+            st = conexao.prepareStatement("update produtos SET código_produto=?, preço_produto=?,nome_produto=?,categoria_produto=? where código_produto=?");
+
+            st.setString(1, txtCodigoProduto.getText().trim());
+            st.setString(2, txtPrecoProduto.getText().trim());
+            st.setString(3, txtNomeProduto.getText().trim());
+            st.setString(4, txtCategoriaProduto.getText().trim());
+            st.setString(5, txtCodigoProduto.getText().trim());
+
+            int rs = st.executeUpdate();
+
+            if (rs == 1) {
+                JOptionPane.showMessageDialog(null, "Produto Atualizado");
+            } else {
+                JOptionPane.showMessageDialog(null, "Produto n”ao encontrado");
+                txtCodigoProduto.requestFocus();
+                return;
+            }
+        } catch (ClassNotFoundException ex) {
+            JOptionPane.showMessageDialog(null, "Você não tem o driver na biblioteca");
+            return;
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Algum parâmetro do BD está incorreto" + ex.getMessage());
+            return;
+        }
+    }//GEN-LAST:event_btnAlterarProdutoActionPerformed
+
+    private void btnOutrosRelatoriosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOutrosRelatoriosActionPerformed
+
+        NewJFrameTelaRelatorio newJFrameTelaRelatorio = new NewJFrameTelaRelatorio();
+        newJFrameTelaRelatorio.setVisible(true);
+    }//GEN-LAST:event_btnOutrosRelatoriosActionPerformed
 
     public static void main(String args[]) {
 
@@ -527,9 +614,11 @@ public class NewJFrameTelaMenu extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuBar barMenu;
+    private javax.swing.JButton btnAlterarProduto;
     private javax.swing.JButton btnCadastrar;
     private javax.swing.JButton btnConsultar;
     private javax.swing.JButton btnExcluir;
+    private javax.swing.JButton btnOutrosRelatorios;
     private javax.swing.JMenuItem imtAtualizarFuncionario;
     private javax.swing.JMenuItem itmAlterarProdutos;
     private javax.swing.JMenuItem itmCadastrarFuncionario;
@@ -539,7 +628,6 @@ public class NewJFrameTelaMenu extends javax.swing.JFrame {
     private javax.swing.JMenuItem itmManual;
     private javax.swing.JMenuItem itmRelatorioFuncionario;
     private javax.swing.JMenuItem itmRelatoriosProdutos;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel lblBackground;
     private javax.swing.JLabel lblCodigoProduto;
     private javax.swing.JLabel lblMarcaProduto;

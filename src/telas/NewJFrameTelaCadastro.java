@@ -44,16 +44,17 @@ public class NewJFrameTelaCadastro extends javax.swing.JFrame {
         lblNome.setForeground(new java.awt.Color(120, 166, 233));
         lblNome.setText("Nome");
         getContentPane().add(lblNome);
-        lblNome.setBounds(20, 30, 120, 30);
+        lblNome.setBounds(20, 30, 120, 40);
 
         txtName.setBackground(new java.awt.Color(252, 232, 222));
+        txtName.setFont(new java.awt.Font("Aharoni", 0, 12)); // NOI18N
         txtName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtNameActionPerformed(evt);
             }
         });
         getContentPane().add(txtName);
-        txtName.setBounds(150, 30, 240, 30);
+        txtName.setBounds(150, 30, 230, 40);
 
         lblSenha.setFont(new java.awt.Font("Aharoni", 0, 14)); // NOI18N
         lblSenha.setForeground(new java.awt.Color(120, 166, 233));
@@ -61,6 +62,8 @@ public class NewJFrameTelaCadastro extends javax.swing.JFrame {
         getContentPane().add(lblSenha);
         lblSenha.setBounds(20, 180, 120, 30);
 
+        btnVoltar.setBackground(new java.awt.Color(204, 204, 255));
+        btnVoltar.setFont(new java.awt.Font("Aharoni", 0, 12)); // NOI18N
         btnVoltar.setText("Voltar");
         btnVoltar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -68,8 +71,10 @@ public class NewJFrameTelaCadastro extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnVoltar);
-        btnVoltar.setBounds(20, 260, 100, 30);
+        btnVoltar.setBounds(20, 250, 110, 40);
 
+        btnCadastrar.setBackground(new java.awt.Color(204, 204, 255));
+        btnCadastrar.setFont(new java.awt.Font("Aharoni", 0, 12)); // NOI18N
         btnCadastrar.setText("Cadastrar");
         btnCadastrar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnCadastrar.addActionListener(new java.awt.event.ActionListener() {
@@ -78,33 +83,42 @@ public class NewJFrameTelaCadastro extends javax.swing.JFrame {
             }
         });
         getContentPane().add(btnCadastrar);
-        btnCadastrar.setBounds(290, 260, 100, 30);
+        btnCadastrar.setBounds(280, 250, 110, 40);
 
         txtSenhaCadastro.setBackground(new java.awt.Color(252, 232, 222));
+        txtSenhaCadastro.setFont(new java.awt.Font("Aharoni", 0, 12)); // NOI18N
+        txtSenhaCadastro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtSenhaCadastroActionPerformed(evt);
+            }
+        });
         getContentPane().add(txtSenhaCadastro);
-        txtSenhaCadastro.setBounds(150, 80, 240, 30);
+        txtSenhaCadastro.setBounds(150, 80, 230, 40);
 
         txtRepitaSenha.setBackground(new java.awt.Color(252, 232, 222));
+        txtRepitaSenha.setFont(new java.awt.Font("Aharoni", 0, 12)); // NOI18N
         txtRepitaSenha.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtRepitaSenhaActionPerformed(evt);
             }
         });
         getContentPane().add(txtRepitaSenha);
-        txtRepitaSenha.setBounds(150, 130, 240, 30);
+        txtRepitaSenha.setBounds(150, 130, 230, 40);
 
         lblSenha3.setFont(new java.awt.Font("Aharoni", 0, 14)); // NOI18N
         lblSenha3.setForeground(new java.awt.Color(120, 166, 233));
         lblSenha3.setText("Confirme a senha");
         getContentPane().add(lblSenha3);
-        lblSenha3.setBounds(20, 130, 120, 30);
+        lblSenha3.setBounds(20, 130, 120, 40);
 
         lblSenha1.setFont(new java.awt.Font("Aharoni", 0, 14)); // NOI18N
         lblSenha1.setForeground(new java.awt.Color(120, 166, 233));
         lblSenha1.setText("Senha");
         getContentPane().add(lblSenha1);
-        lblSenha1.setBounds(20, 80, 120, 30);
+        lblSenha1.setBounds(20, 80, 120, 40);
 
+        cmbComboBoxCargos.setFont(new java.awt.Font("Aharoni", 0, 12)); // NOI18N
+        cmbComboBoxCargos.setForeground(new java.awt.Color(153, 153, 153));
         cmbComboBoxCargos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Gerente", "Balconista", "Caixa" }));
         cmbComboBoxCargos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -112,7 +126,7 @@ public class NewJFrameTelaCadastro extends javax.swing.JFrame {
             }
         });
         getContentPane().add(cmbComboBoxCargos);
-        cmbComboBoxCargos.setBounds(150, 180, 100, 22);
+        cmbComboBoxCargos.setBounds(150, 180, 100, 30);
 
         setSize(new java.awt.Dimension(424, 357));
         setLocationRelativeTo(null);
@@ -217,6 +231,10 @@ public class NewJFrameTelaCadastro extends javax.swing.JFrame {
     private void cmbComboBoxCargosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbComboBoxCargosActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cmbComboBoxCargosActionPerformed
+
+    private void txtSenhaCadastroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSenhaCadastroActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtSenhaCadastroActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
